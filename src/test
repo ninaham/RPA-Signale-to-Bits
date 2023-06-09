@@ -1,3 +1,26 @@
-ADDE SUBE MULE RAME
+LAA LBA LAB LBB LCA LCB LRA LRB LRC ERA ERB ERC ESUB ELOp1 ELOp2 EMBR EReg PCRst EImm EOpC EPC SCRst ESCL EPCL EPOp1 EPOp2 RAME EErg EALU LReg
 
-MULE ADDE
+c Vor Programmstart: PC zurücksetzen
+PCRst
+c Anweisung laden:
+RAME EOpC ESCL
+c ----------------------------------------------
+c STW $a x
+RAME EImm ELOp2 EMBR
+RAME EImm EPOp1 EReg
+c PC erhöhen
+EPC
+c nächste Anweisung laden
+RAME EOpC ESCL
+c ----------------------------------------------
+c LOAD $a $b
+RAME EImm ELOp1 LReg
+RAME EImm ELOp2 EReg     
+c PC erhöhen
+EPC
+c nächste Anweisung laden
+RAME EOpC ESCL
+c ----------------------------------------------
+c Programmabschluss: Steuerwerk zurücksetzen
+SCRst
+

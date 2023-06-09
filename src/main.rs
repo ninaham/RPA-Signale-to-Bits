@@ -19,15 +19,15 @@ fn main() {
             .unwrap_or(&"32".to_string())
             .as_str()
         {
-            "16" => s.iter().for_each(|seq| println!("{seq:016b}")),
-            "32" => s.iter().for_each(|seq| println!("{seq:032b}")),
-            "48" => s.iter().for_each(|seq| println!("{seq:048b}")),
-            "64" => s.iter().for_each(|seq| println!("{seq:064b}")),
+            "16" => s.iter().for_each(|seq| println!("{seq:04x}")),
+            "32" => s.iter().for_each(|seq| println!("{seq:08x}")),
+            "48" => s.iter().for_each(|seq| println!("{seq:016x}")),
+            "64" => s.iter().for_each(|seq| println!("{seq:032x}")),
             _ => println!(
                 "{}",
                 Error::new(
                     std::io::ErrorKind::InvalidInput,
-                    "Vec length should be 8, 16, 32, 48 or 64"
+                    "Vec length should be 16, 32, 48 or 64"
                 )
             ),
         },
@@ -39,16 +39,13 @@ fn load_program_data() -> Command {
         .version("0.1.0")
         .about("Konvertiert eine Reihe selbst definierter Signale zu einer Bitfolge. Input Format siehe README.")
         .args([
-            arg!(veclen: -l --veclen <length> "Gibt die Länge des Outputvektors an. Mögliche Werte: 12, 32, 48, 64"),
+            arg!(veclen: -l --veclen <length> "Gibt die Länge des Outputvektors an. Mögliche Werte: 16, 32, 48, 64"),
             arg!(file: <file> "Inputdatei")
         ])
 }
 
 fn read_input(file: &str) -> Result<Vec<usize>, Error> {
-    match fs::read_to_string(file) {
-        Err(x) => Err(x),
-        Ok(input) => parse_input(&input),
-    }
+    parse_input(fs::read_to_string(file)?.as_str())
 }
 
 fn parse_signals(sigs: &str) -> Vec<&str> {
@@ -79,6 +76,7 @@ fn parse_input(input: &str) -> Result<Vec<usize>, Error> {
 fn parse_signal_sequence(input: &str, sigs: &[&str]) -> Result<Vec<usize>, Error> {
     input
         .split(' ')
+        .filter(|s| !s.is_empty())
         .map(|s| sigs.iter().position(|s1| *s1 == s))
         .map(|o| match o {
             Some(p) => Ok(p),
