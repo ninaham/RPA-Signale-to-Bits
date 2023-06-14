@@ -1,4 +1,4 @@
-LAA LBA LAB LBB LCA LCB LRA LRB LRC ERA ERB ERC ESUB ELOp1 ELOp2 EMBR EReg PCRst EImm EOpC EPC SCRst ESCL EPCL EPOp1 EPOp2 RAME EErg EALU LReg
+LAA LBA LAB LBB LCA LCB LRA LRB LRC ERA ERB ERC ESUB ELOp1 ELOp2 EMBR EReg PCRst EImm EOpC EPC SCRst ESCL EPCL EPOp1 EPOp2 RAME EErg EALU LReg EJmpAdr
 
 c Vor Programmstart: PC zurücksetzen
 PCRst
@@ -10,17 +10,26 @@ RAME EImm ELOp2 EMBR
 RAME EImm EPOp1 EReg
 c PC erhöhen
 EPC
+
 c nächste Anweisung laden
 RAME EOpC ESCL
 c ----------------------------------------------
 c LOAD $a $b
-RAME EImm ELOp1 LReg
-RAME EImm ELOp2 EReg     
+RAME EImm ELOp1 EMBR
+RAME EImm ELOp2 EMBR LReg EReg 
 c PC erhöhen
 EPC
+
+c nächste Anweisung laden
+RAME EOpC ESCL
+c ----------------------------------------------
+c JMP adr
+RAME EImm EPCL EJmpAdr
+c PC erhöhen
+EPC
+
 c nächste Anweisung laden
 RAME EOpC ESCL
 c ----------------------------------------------
 c Programmabschluss: Steuerwerk zurücksetzen
 SCRst
-
