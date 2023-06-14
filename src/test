@@ -14,7 +14,7 @@ EPC
 c nächste Anweisung laden
 RAME EOpC ESCL
 c ----------------------------------------------
-c LOAD $a $b
+c LOAD $b $a 
 RAME EImm ELOp1 EMBR
 RAME EImm ELOp2 EMBR LReg EReg 
 c PC erhöhen
