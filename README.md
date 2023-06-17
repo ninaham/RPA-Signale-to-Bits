@@ -4,7 +4,7 @@ dieses Programm erlaubt es eine Reihe von Signalen für eine CPU zu definieren, 
 
 ## Usage
 
-1. [Binary](https://github.com/ninaham/RPA-Signale-to-Bits/releases/tag/v0.1.0) laden (aktuell nur Linux)
+1. [Binary](https://github.com/ninaham/RPA-Signale-to-Bits/releases) laden (aktuell nur Linux)
 2. ausführen mit `sigs-to-bits <path_to_input_file>`
 3. noch Fragen? `sigs-to-bits -h`
 
