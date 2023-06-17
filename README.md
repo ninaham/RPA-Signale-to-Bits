@@ -4,9 +4,9 @@ dieses Programm erlaubt es eine Reihe von Signalen für eine CPU zu definieren, 
 
 ## Usage
 
-1. [Rust](https://www.rust-lang.org/learn/get-started) sollte installiert sein
-2. ausführen mit `cargo run -- <path_to_input_file>`
-3. noch Fragen? `cargo run -- -h`
+1. [Binary](https://github.com/ninaham/RPA-Signale-to-Bits/releases/tag/v0.1.0) laden (aktuell nur Linux)
+2. ausführen mit `sigs-to-bits <path_to_input_file>`
+3. noch Fragen? `sigs-to-bits -h`
 
 ## Input Format
 
